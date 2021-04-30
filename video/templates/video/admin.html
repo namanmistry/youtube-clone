@@ -1,0 +1,55 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'video/admin.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body>
+ <div id="wrapper">
+  <h1>Video Admin</h1>
+  
+  <table id="keywords" cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th><span>id</span></th>
+        <th><span>Video</span></th>
+        <th><span>Views</span></th>
+        <th><span>Delete</span></th>
+
+      </tr>
+    </thead>
+    <tbody>
+    {% for video in videos %}
+      <tr id="{{video.id}}">
+      <td id="id">{{video.id}}</td>
+        <td class="lalign">{{video.title|slice:40}}...</td>
+        <td>{{video.views}}</td>
+        <td><button id="delete" type="button" class="btn btn-danger">Delete</button></td>   
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+ </div> 
+</body>
+<script>
+{% comment %} $(function(){
+  $('#keywords').tablesorter(); 
+}); {% endcomment %}
+
+//custom javascript
+deleteButton = document.getElementById('delete')
+deleteButton.addEventListener('click',sendDelete)
+
+function sendDelete(e){
+    
+    e.preventDefault();
+    video_id = document.getElementById('id').innerHTML
+    var x = new XMLHttpRequest();
+	x.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById(video_id).innerHTML =
+      ""
+      alert("Video Deleted Successfully")
+    }
+	};
+	x.open("POST", `/videos/delete/${video_id}/`, true);
+	x.send();
+}
+</script>

@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Youtube</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	 <link rel="stylesheet" type="text/css" href="{% static 'video/css/bootstrap.css' %}">
+
+ <link rel="stylesheet" type="text/css" href="{% static 'video/css/all.min.css' %}">
+ <link rel="stylesheet" type="text/css" href="{% static 'video/css/fontawesome.css' %}"> 
+ <link rel="stylesheet" type="text/css" href="{% static 'video/css/style.css' %}">
+
+ 
+
+</head>
+<body>
+<!-- Top navbar -->
+<nav class="container-fluid fixed-top bg-white pt-2" id="top_nav">
+   	<div class="row">
+  		<div class="col-4 pl-4">
+    		<a class="navbar-brand" href="/videos/"><img src="{% static 'video/images/logo.jpg' %}"></a>
+    	</div>
+    	<div class="col-4">
+    		<form action="/videos/search/" method="POST">
+		    <div class="input-group mb-3">
+			  <input type="text" class="form-control search" name="searchtext" placeholder="Search">
+			  <div class="input-group-append">
+			    <button type="submit" class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="bottom" title="Search!"><i class="fas fa-search"></i></button>
+			  </div>
+			</div>
+		</form>
+		</div>
+		{% if watcher != 0 %}
+		<div class="col-4 text-right">
+			<i class="fas fa-user-circle" style="font-size: 20px;"></i> <span style="font-size:14px; font-weight: 600;">{{watcher.firstName}}</span>
+		</div>
+		{% elif watcher == 0 %}
+		<div class="col-4 text-right">
+			<a href="/users/login-user/" class="btn btn-outline-primary"><i class="fas fa-user-circle" style="font-size: 20px;"></i> <span style="font-size:14px; font-weight: 600;">SIGN IN</span></a>
+		</div>
+		{% endif %}
+		
+	</div>
+</nav>
+<!-- Top navbar -->
+
+<!-- mobile top navbar -->
+<nav class="container-fluid fixed-top bg-white pt-3" id="top_nav_mobile">
+   	<div class="row">
+  		<div class="col-3 pl-4">
+    		<a class="navbar-brand" href="index.html"><img src="images/logo.jpg" class="mb-2"></a>
+    	</div>
+    	<div class="col-7">
+    		<form method="GET" action="/search/">
+		    <div class="input-group mb-3">
+			  <input type="text" class="form-control search" placeholder="Search">
+			  <div class="input-group-append">
+			    <button class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="bottom" title="Search!"><i class="fas fa-search"></i></button>
+			  </div>
+			</div>
+		</form>
+		</div>
+		<div class="col-2 text-right">
+			<a href="login.html"><i class="fas fa-user-circle" style="font-size: 30px;"></i></a>
+		</div>
+	</div>
+</nav>
+<!-- mobile top navbar -->
+
+<!-- sidebar -->
+ <nav class="main-nav">
+      <ul>
+        <li class="">
+          <a href="/videos/">
+          	<span class="fa fa-2x">
+	            <svg style="display: block; height: 24px; width: 24px;margin: auto;" viewBox="0 0 24 24">
+				   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8" fill="red"></path>
+				</svg>
+			</span>
+            <span class="nav-text">
+                Home
+            </span>
+          </a>
+        </li>
+
+        
+
+        <li class="has-subnav border-top">
+          <a href="/videos/library/">
+             <span class="fa fa-2x">
+	            <svg style="display: block; height: 24px; width: 24px;margin: auto;" viewBox="0 0 24 24">
+				  <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z" fill="#606060"></path>
+				</svg>
+			</span>
+            <span class="nav-text">
+              Library
+            </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="/videos/history/">
+             <span class="fa fa-2x">
+	            <svg style="display: block; height: 24px; width: 24px;margin: auto;" viewBox="0 0 24 24">
+				 <path d="M11.9 3.75c-4.55 0-8.23 3.7-8.23 8.25H.92l3.57 3.57.04.13 3.7-3.7H5.5c0-3.54 2.87-6.42 6.42-6.42 3.54 0 6.4 2.88 6.4 6.42s-2.86 6.42-6.4 6.42c-1.78 0-3.38-.73-4.54-1.9l-1.3 1.3c1.5 1.5 3.55 2.43 5.83 2.43 4.58 0 8.28-3.7 8.28-8.25 0-4.56-3.7-8.25-8.26-8.25zM11 8.33v4.6l3.92 2.3.66-1.1-3.2-1.9v-3.9H11z" fill="#606060"></path>
+				</svg>
+			</span>
+            <span class="nav-text">
+                History
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+<!-- sidebar -->
+{% block body %}
+{% endblock %}
+ <script src="{% static 'video/js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% static 'video/js/popper.min.js' %}"></script>
+  <script src="{% static 'video/js/bootstrap.min.js' %}"></script>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+</body>
+</html>

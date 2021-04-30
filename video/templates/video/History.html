@@ -1,0 +1,107 @@
+{% extends "video/base.html" %} {% block body %}
+<div class="row main_container">
+		<div class="col-md-2"></div>
+		<div class="col-md-10">
+			<!-- content section -->		
+			<div class="container-fluid">
+				<div class="container-fluid pb-1 border-bottom">
+				  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				    <div class="panel panel-default">
+				      <div class="panel-heading" role="tab" id="headingOne">
+				        <div class="panel-title">
+				        
+				         	{% comment %} <svg style="height: 24px; width: 24px;" viewBox="0 0 24 24">
+								  <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" fill="#606060"></path>
+								</svg> {% endcomment %}
+								<span class="accordion_btn">History</span>
+				        </div>
+				      </h4>
+				      </div>
+				      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				        <div class="panel-body">
+				        	<div class="row">
+				        		<div class="col-8">
+				         <table class="table table-borderless table-sm">
+							  <thead>
+							    <tr>
+							      <th scope="col" class="border-bottom pl-2 pr-2">UPLOAD DATE</th>
+							      <th scope="col" class="border-bottom">TYPE</th>
+							      <th scope="col" class="border-bottom">DURATION</th>
+							      <th scope="col" class="border-bottom">FEATURES</th>
+							      <th scope="col" class="border-bottom">SORT BY</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td>Last hour</td>
+							      <td>Video</td>
+							      <td>Short (<4 minutes)</td>
+							      <td>Live</td>
+							      <th>Relevance</th>
+							    </tr>
+							    <tr>
+							      <td>Today</td>
+							      <td>Channel</td>
+							      <td>Long (>20 minutes)</td>
+							      <td>4K</td>
+							      <td>Upload date</td>
+							    </tr>
+							    <tr>
+							    	<td>This week</td>
+							      <td>Playlist</td>
+							      <td></td>
+							      <td>HD</td>
+							      <td>View count</td>
+							    </tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>
+				        </div>
+				      </div>
+				    </div>
+				    
+				  </div>
+				</div>
+                {% for video in history %}
+				<div class="container-fluid mt-4">
+					<a href="/videos/watch/{{video.video.id}}/">
+						<div class="card">
+							<div class="row">
+								<div class="col-md-3">
+									<img src="{{video.video.thumbnail.url}}" alt="image" width="100%" height="138" />
+								</div>
+								<div class="col-md-7 p-0 pt-2">
+									<div class="row">
+										<div class="col-1 ml-2 mr-3 desc_hide">
+											<img id="img" width="48" src="https://yt3.ggpht.com/a-/AOh14GinKFFtcXMMwrPfhFbie8tgLV0vMzfvVFSMlw=s68-c-k-c0x00ffffff-no-rj-mo" class="rounded-circle">
+										</div>
+										<div class="col-10">
+											<p class="mb-1 title" title="Full Song: KHAIRIYAT (BONUS TRACK) | CHHICHHORE | Sushant, Shraddha | Pritam, Amitabh B|Arijit Singh">{{video.video.title}}</p>
+											<p class="subtitle">
+												{{video.video.channel.name}}<i class="fas fa-check-circle"></i> 
+												{{video.video.views}} views 
+											</p>
+											<div class="short_description">
+												{{video.video.description1}}
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+                {% endfor %}
+				
+
+
+				<!-- content Section -->
+
+<p><br></p>
+<p><br></p>
+
+			</div>
+		</div>
+{% endblock %}
